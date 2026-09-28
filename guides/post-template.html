@@ -350,6 +350,7 @@
       stroke: currentColor;
       fill: none;
       stroke-width: 2.5;
+      pointer-events: none; /* 👈 補這行：防止點擊點在箭頭圖標上被阻擋 */
     }
 
     /* 頁尾 */
@@ -682,20 +683,27 @@
   <script>
     // 1. 🚀 「回到頂端 (Back to Top)」智慧滾動引擎
     const backToTopBtn = document.getElementById('backToTopBtn');
-    window.addEventListener('scroll', function() {
-      if (window.scrollY > 350) {
-        backToTopBtn.classList.add('show');
-      } else {
-        backToTopBtn.classList.remove('show');
-      }
-    });
-
-    backToTopBtn.addEventListener('click', function() {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth' // 平滑優雅滑回頂部
+    if (backToTopBtn) {
+      window.addEventListener('scroll', function() {
+        const scrollPos = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        if (scrollPos > 350) {
+          backToTopBtn.classList.add('show');
+        } else {
+          backToTopBtn.classList.remove('show');
+        }
       });
-    });
+
+      backToTopBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation(); // 👈 防止被底下的全域廣告點擊攔截器吃掉
+        try {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } catch (err) {
+          document.documentElement.scrollTop = 0;
+          document.body.scrollTop = 0;
+        }
+      });
+    }
 
     // 2. 👈 左側目錄錨點平滑滾動偏移修正 (避開固定導航欄 64px 遮擋)
     document.querySelectorAll('.toc-list a').forEach(anchor => {
