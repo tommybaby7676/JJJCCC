@@ -247,6 +247,21 @@
       padding: 12px 24px; font-size: 0.95rem;
     }
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 32px rgba(0, 255, 136, 0.85); }
+    /* 👻 幽靈透明切角按鈕 (賽博龐克微光暗底 + 極光綠框線 + 白字) */
+    .btn-ghost {
+      background: rgba(4, 40, 24, 0.9) !important;
+      color: #FFFFFF !important;
+      border: 1.5px solid var(--magenta) !important;
+      box-shadow: 0 0 14px rgba(0, 255, 136, 0.25) !important;
+      backdrop-filter: blur(8px);
+      transition: all 0.22s ease;
+    }
+    .btn-ghost:hover {
+      background: rgba(0, 255, 136, 0.18) !important;
+      color: var(--magenta) !important;
+      box-shadow: 0 0 22px rgba(0, 255, 136, 0.5) !important;
+      transform: translateY(-2px);
+    }  
     .btn-large {
       width: 100%; max-width: 440px; padding: 16px 32px; font-size: 1.15rem; margin: 0 auto;
       animation: btnPulse 2s ease-in-out infinite;
