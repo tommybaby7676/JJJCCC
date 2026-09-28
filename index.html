@@ -207,6 +207,8 @@
       border-bottom: 1px solid rgba(0, 255, 136, 0.1);
     }
 
+    /* 👈 電腦版預設隱藏手機專用按鈕 */
+    .mobile-actions { display: none;  }
     @media (max-width: 768px) {
       /* 1. 電腦導航隱藏，顯示手機專屬頂部功能區 */
       .nav-links { display: none !important; }
@@ -481,7 +483,7 @@
     .infoval { padding: 14px 18px; color: var(--text); font-size: 0.95rem; display: flex; align-items: center; }
 
     /* SEO 長文 */
-    .prose { max-width: 880px; }
+    .prose { max-width: 880px; margin: 0 auto; }
     /* 📝 SEO 內容區：增強文字立體陰影，消除背景光斑干擾 */
     .prose h3 {
       font-family: "Chakra Petch", "Noto Sans SC";
@@ -818,9 +820,8 @@
           <div class="game-body">
             <div class="info"><h3>FISHING</h3><div class="genre">all FISH</div></div>
             <div class="play" data-en="PLAY ›" data-zh="開玩 ›">PLAY ›</div>
-          <div class="play" data-en="PLAY ›" data-zh="開玩 ›">PLAY ›</div>
-        </div>
-      </a>
+          </div>
+        </a>
     </div> <!-- 👈 這是 .games 網格的結束 -->
 
     <!-- 👈 導流按鈕直接放在 .games 網格下方、.wrap 裡面 -->
