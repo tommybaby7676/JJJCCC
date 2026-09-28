@@ -325,7 +325,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 994;
+      z-index: 9999;
       opacity: 0;
       pointer-events: none;
       transform: translateY(16px);
@@ -611,7 +611,7 @@
   </main>
 
   <!-- 🚀 【新增功能】回到頂部懸浮火箭按鈕 (Back to Top) -->
-  <button class="back-to-top" id="backToTopBtn" aria-label="Back to Top" title="Back to Top">
+  <button class="back-to-top" id="backToTopBtn" aria-label="Back to Top" title="Back to Top" onclick="window.scrollTo({top:0,behavior:'smooth'});document.documentElement.scrollTo({top:0,behavior:'smooth'});document.body.scrollTo({top:0,behavior:'smooth'});">
     <svg viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"/><path d="M12 9v12"/></svg>
   </button>
 
