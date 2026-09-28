@@ -6,16 +6,15 @@
 
   <!-- 
   ================================================================================
-  🛡️ 【分頁專用】關於品牌、牌照審計與理性博弈・合規認證頁 (CHEAT SHEET 小抄)
+  🛡️ 【分頁專用】品牌介紹、合規牌照、資安架構與信任中心 (ABOUT CHEAT SHEET)
   ================================================================================
-  📌 日常換皮 3 分鐘速查指南：
-     Step 1. 【區塊 1】ACTIVE_PIXEL_ID  : 換成對應的 Meta 像素 ID
-     Step 2. 【區塊 2】SEO 標題與品牌詞  : 全域搜尋「MATE369」替換成新品牌名
-     Step 3. 【區塊 4】CSS 品牌主色調    : 保持與主頁一致，若需變色改 :root 即可
-     Step 4. 【區塊 16】defaultRegisterUrl: 換成包網註冊直出線
-     Step 5. 素材清單 (直接放於根目錄，本分頁自動透過 ../ 讀取)：
-             - logo.webp / logo.ico
-             - view.webp (龐克城市背景圖)
+  📌 日常換皮與品牌配置 3 分鐘速查指南：
+     Step 1. 【區塊 1】ACTIVE_PIXEL_ID     : 換成對應的 Meta 像素 ID
+     Step 2. 【區塊 2】SEO 標題與品牌詞     : 全域搜尋「MATE369」替換成新品牌名
+     Step 3. 【區塊 7】圖片更換說明 (直接丟在 about/ 資料夾內！)：
+             - license_seal.webp  : 官方執照驗證章 (預設有 SVG 盾牌備援，不放圖也超好看)
+             - cert_ecogra.webp   : 審計機構標章 (有備援標籤，絕不破圖)
+     Step 4. 【區塊 16】defaultRegisterUrl : 換成包網註冊直出線
   ================================================================================
   -->
 
@@ -38,8 +37,8 @@
   </script>
 
   <!-- 【區塊 2】SEO 結構與分頁標題 -->
-  <title>MATE369 | About Us, Certified Fairness &amp; Corporate Standards</title>
-  <meta name="description" content="Learn about MATE369: Australia's premier certified online casino and pokie platform. Audited RNG fairness, PayID banking protocols, and responsible gaming commitments.">
+  <title>About MATE369 | Official Gaming License, Security &amp; Fair Play</title>
+  <meta name="description" content="Discover MATE369's verified gaming license, certified RNG fair play policies, TLS 1.3 banking encryption, and responsible gaming standards in Australia.">
   <meta name="robots" content="index,follow,max-image-preview:large">
   
   <meta name="geo.region" content="AU">
@@ -85,7 +84,7 @@
       padding-top: var(--nav-height);
     }
 
-    /* 🏙️ 主頁背景視覺 */
+    /* 🏙️ 主頁同款龐克背景 */
     .bg-city {
       position: fixed; inset: 0; z-index: 0; pointer-events: none;
       background: url('../view.webp') center top / cover no-repeat fixed;
@@ -117,7 +116,7 @@
     .wrap { position: relative; z-index: 3; max-width: 1180px; margin: 0 auto; padding: 0 20px; }
 
     /* 📌 導航欄 */
-    nav {
+    nav.top-nav {
       position: fixed; top: 0; left: 0; right: 0; height: var(--nav-height);
       z-index: 999; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
       background: rgba(3, 28, 16, 0.90); border-bottom: 1px solid var(--line);
@@ -142,13 +141,12 @@
     }
     .lang:hover { color: #fff; border-color: var(--magenta); }
 
-    /* 📱 手機功能群組 (電腦版直接隱藏) */
-    .mobile-actions { display: none !important; }
     .menu-toggle {
-      background: none; border: 1px solid var(--line);
+      display: none; background: none; border: 1px solid var(--line);
       color: var(--magenta); font-size: 1.4rem; padding: 4px 10px;
       cursor: pointer; border-radius: 4px; line-height: 1;
     }
+    .mobile-actions { display: none !important; }
 
     .mobile-menu {
       display: none; position: fixed; top: var(--nav-height); left: 0; right: 0;
@@ -193,7 +191,7 @@
       50% { transform: scale(1.03); box-shadow: 0 0 32px rgba(0, 255, 136, 0.8); }
     }
 
-    /* 頁面通用排版 */
+    /* 頁面標題區 */
     header { padding: 32px 0 24px; text-align: center; }
     .badge {
       display: inline-flex; align-items: center; gap: 8px; font-family: "Chakra Petch";
@@ -214,38 +212,155 @@
       background: linear-gradient(90deg, #00ff88, #25d366, #ffc700);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    .sub { max-width: 720px; margin: 10px auto 0; color: var(--text); font-size: 0.98rem; font-weight: 500; line-height: 1.5; text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
+    .sub { max-width: 780px; margin: 10px auto 0; color: var(--text); font-size: 0.98rem; font-weight: 500; line-height: 1.55; text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
 
-    /* 🏛️ 4 大官方資安牌照徽章列 */
-    .trust-badges {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
-      max-width: 980px; margin: 26px auto 40px;
+    /* ==========================================================================
+       🏛️ 【區塊 7】官方博弈執照背書卡 (License & Compliance Banner)
+       ========================================================================== */
+    .license-banner {
+      background: linear-gradient(135deg, var(--panel-solid), rgba(0,255,136,0.12));
+      border: 1.5px solid var(--magenta);
+      padding: 32px 30px;
+      margin: 28px auto 45px;
+      display: grid;
+      grid-template-columns: 100px 1fr auto;
+      gap: 24px;
+      align-items: center;
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%);
+      box-shadow: 0 0 24px rgba(0,255,136,0.22);
     }
-    .trust-card {
-      background: var(--panel); border: 1px solid var(--line); padding: 18px 14px; text-align: center;
-      clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+    .license-icon-wrap {
+      width: 90px; height: 90px; border-radius: 50%;
+      background: rgba(3, 28, 16, 0.9); border: 2px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); box-shadow: 0 0 18px rgba(255,199,0,0.35);
+    }
+    .license-info h3 {
+      font-family: "Chakra Petch"; font-size: 1.35rem; color: #fff; font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .license-info p {
+      color: #DBFFEC; font-size: 0.92rem; line-height: 1.6; max-width: 720px;
+    }
+    .license-tag {
+      display: inline-block; background: rgba(255,199,0,0.15); border: 1px solid var(--gold);
+      color: var(--gold); font-family: "Chakra Petch"; font-size: 0.8rem; font-weight: 700;
+      padding: 4px 10px; border-radius: 4px; margin-top: 6px;
+    }
+
+    /* ==========================================================================
+       🛡️ 4 大資安承諾網格 (Security & Financial Integrity)
+       ========================================================================== */
+    .sec-head { text-align: center; margin-bottom: 24px; }
+    .eyebrow { font-family: "Chakra Petch"; font-weight: 600; font-size: 0.8rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--magenta); margin-bottom: 8px; }
+    h2 { font-family: "Chakra Petch", "Noto Sans SC"; font-weight: 700; font-style: italic; font-size: clamp(1.8rem, 4vw, 2.4rem); line-height: 1.15; margin-bottom: 12px; }
+    h2 em { font-style: italic; color: var(--magenta); }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-bottom: 50px;
+    }
+    .pillar-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 24px 20px;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%);
+      transition: all 0.25s ease;
+    }
+    .pillar-card:hover {
+      border-color: var(--magenta);
+      box-shadow: 0 0 20px rgba(0,255,136,0.3);
+      transform: translateY(-3px);
+    }
+    .pillar-icon {
+      width: 44px; height: 44px; border-radius: 8px;
+      background: rgba(0,255,136,0.1); border: 1px solid var(--line);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--magenta);
+    }
+    .pillar-card h3 {
+      font-family: "Chakra Petch", "Noto Sans SC"; font-size: 1.12rem; font-weight: 700;
+      color: #fff;
+    }
+    .pillar-card p {
+      color: var(--muted); font-size: 0.88rem; line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       ⚖️ 國際第三方公證審計標章列 (Audit Certifications)
+       ========================================================================== */
+    .audit-box {
+      background: var(--panel-solid);
+      border: 1px solid var(--line);
+      padding: 28px 24px;
+      margin-bottom: 50px;
+      border-radius: 6px;
+      text-align: center;
+    }
+    .audit-title {
+      font-family: "Chakra Petch"; font-size: 0.85rem; letter-spacing: 2px;
+      color: var(--gold); text-transform: uppercase; margin-bottom: 18px; font-weight: 700;
+    }
+    .audit-chips {
+      display: flex; justify-content: center; align-items: center; gap: 14px; flex-wrap: wrap;
+    }
+    .audit-badge {
+      background: rgba(3, 28, 16, 0.9);
+      border: 1px solid var(--line);
+      padding: 10px 18px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: "Chakra Petch";
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #fff;
       transition: 0.2s;
     }
-    .trust-card:hover { border-color: var(--magenta); }
-    .trust-val { font-family: "Chakra Petch"; font-size: 1.1rem; font-weight: 700; color: var(--gold); }
-    .trust-lbl { font-size: 0.76rem; color: var(--muted); margin-top: 4px; text-transform: uppercase; font-weight: 600; }
+    .audit-badge:hover {
+      border-color: var(--magenta);
+      box-shadow: 0 0 14px rgba(0,255,136,0.3);
+    }
+    .audit-badge svg { width: 18px; height: 18px; stroke: var(--magenta); fill: none; stroke-width: 2; }
 
-    /* 📝 SEO 深度長文專區 (自帶雙層立體陰影) */
-    .about-prose { max-width: 960px; margin: 0 auto 50px; }
-    .about-block {
-      background: var(--panel); border: 1px solid var(--line); padding: 28px 24px; margin-bottom: 20px;
-      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);
+    /* ==========================================================================
+       📜 合規條款與政策手風琴 (Terms, Privacy & Responsible Play)
+       ========================================================================== */
+    .policy-wrapper { max-width: 960px; margin: 0 auto 55px; display: grid; gap: 12px; }
+    .policy-card {
+      background: var(--panel); border: 1px solid var(--line);
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+      transition: all 0.22s ease;
     }
-    .about-block h3 {
-      font-family: "Chakra Petch", "Noto Sans SC"; font-weight: 700; font-size: 1.3rem;
-      color: var(--gold); margin-bottom: 12px;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95), 0 0 16px rgba(0, 0, 0, 0.8);
+    .policy-card:hover { border-color: var(--magenta); }
+    .policy-header {
+      padding: 16px 22px; cursor: pointer; display: flex; align-items: center; justify-content: space-between;
+      user-select: none;
     }
-    .about-block p {
-      color: #DBFFEC; line-height: 1.8; font-size: 0.96rem;
-      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9); margin-bottom: 10px;
+    .policy-header h3 {
+      font-family: "Chakra Petch", "Noto Sans SC"; font-size: 1.05rem; font-weight: 700; color: #fff;
     }
-    .about-block p:last-child { margin-bottom: 0; }
+    .policy-icon {
+      font-family: "Chakra Petch"; font-size: 1.25rem; font-weight: 700; color: var(--magenta);
+      transition: transform 0.25s ease;
+    }
+    .policy-card.open .policy-icon { transform: rotate(45deg); color: var(--gold); }
+    .policy-body {
+      max-height: 0; overflow: hidden; transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
+      padding: 0 22px; border-top: 1px solid transparent;
+    }
+    .policy-card.open .policy-body {
+      max-height: 500px; padding: 14px 22px 20px; border-top: 1px solid rgba(0, 255, 136, 0.1);
+      transition: max-height 0.35s ease-in-out;
+    }
+    .policy-body p { color: #DBFFEC; font-size: 0.92rem; line-height: 1.7; }
 
     /* 頁尾轉換大卡片 */
     .final-cta {
@@ -257,6 +372,52 @@
     .final-cta h2 em { font-style: italic; color: var(--magenta); }
     .final-cta p { color: var(--muted); font-size: 1rem; max-width: 600px; margin: 0 auto 24px; }
 
+    /* ==========================================================================
+       🚀 回到頂部懸浮火箭按鈕 (Back to Top Button - 最高層級穿透)
+       ========================================================================== */
+    .back-to-top {
+      position: fixed;
+      bottom: 92px;
+      right: 23px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--panel-solid);
+      border: 1.5px solid var(--line);
+      color: var(--magenta);
+      cursor: pointer !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999 !important; /* 最高層級，杜絕遮罩攔截 */
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(16px);
+      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+    }
+    .back-to-top.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    .back-to-top:hover {
+      border-color: var(--magenta);
+      background: #00ff88;
+      color: #031c10;
+      box-shadow: 0 0 22px rgba(0,255,136,0.85);
+      transform: translateY(-3px);
+    }
+    .back-to-top svg {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2.5;
+      pointer-events: none; /* 穿透給 button 接收點擊 */
+    }
+
+    /* 頁尾 */
     footer { border-top: 1px solid var(--line); padding: 36px 0; text-align: center; color: var(--muted); font-size: 0.85rem; }
     .f-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 14px; }
     .f-links a { color: var(--muted); text-decoration: none; font-weight: 600; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px; transition: 0.2s; }
@@ -275,163 +436,50 @@
       header { padding: 20px 0 14px; }
       h1 { font-size: 2.1rem; }
       .sub { font-size: 0.92rem; }
-      .trust-badges { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-      .about-block { padding: 18px 16px; }
-      .about-block h3 { font-size: 1.15rem; }
-      .about-block p { font-size: 0.9rem; line-height: 1.65; }
+      
+      .license-banner { grid-template-columns: 1fr; text-align: center; justify-items: center; padding: 22px 18px; }
+      .pillars-grid { grid-template-columns: 1fr; gap: 14px; }
+      .audit-chips { gap: 8px; }
+      .audit-badge { font-size: 0.78rem; padding: 8px 12px; }
+      .back-to-top { bottom: 82px; right: 16px; width: 42px; height: 42px; }
     }
 
-    /* 💬 懸浮社群氣泡容器 (固定在右下角) */
+    /* 💬 懸浮社群氣泡模組 (定稿旗艦版樣式) */
     .social-bubble-wrap {
-      position: fixed;
-      bottom: 24px;
-      right: 20px;
-      z-index: 995;
-      display: flex;
-      flex-direction: column-reverse;
-      align-items: flex-end;
-      gap: 12px;
+      position: fixed; bottom: 24px; right: 20px; z-index: 995;
+      display: flex; flex-direction: column-reverse; align-items: flex-end; gap: 12px;
     }
-
-    /* 常駐主氣泡（電競極光綠 + 雙層立體浮雕感） */
     .social-main-btn {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
+      width: 56px; height: 56px; border-radius: 50%;
       background: radial-gradient(circle at 30% 30%, #00ff88, #054a2a 75%, #021c10 100%);
-      border: 1.5px solid #00ff88;
-      color: #ffffff;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      border: 1.5px solid #00ff88; color: #ffffff; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
       box-shadow: 0 0 20px rgba(0, 255, 136, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.4), inset 0 -3px 6px rgba(0, 0, 0, 0.6);
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      position: relative;
-      animation: bubbleWiggle 3s ease-in-out infinite;
+      position: relative; animation: bubbleWiggle 3s ease-in-out infinite;
     }
-
-    .social-main-btn:hover {
-      transform: scale(1.1) rotate(4deg);
-      box-shadow: 0 0 32px rgba(0, 255, 136, 0.9), inset 0 2px 6px rgba(255, 255, 255, 0.6);
-    }
-
-    /* 📡 雷達光環外擴動畫 */
-    .bubble-radar {
-      position: absolute;
-      inset: -6px;
-      border-radius: 50%;
-      border: 1.5px solid rgba(0, 255, 136, 0.7);
-      animation: radarWave 2s ease-out infinite;
-      pointer-events: none;
-    }
-    @keyframes radarWave {
-      0% { transform: scale(0.9); opacity: 0.9; }
-      100% { transform: scale(1.45); opacity: 0; }
-    }
-
-    /* 🟢 24/7 在線實時金黃小燈 */
-    .online-indicator {
-      position: absolute;
-      top: 2px;
-      right: 2px;
-      width: 12px;
-      height: 12px;
-      background: #ffc700;
-      border: 2px solid #031c10;
-      border-radius: 50%;
-      box-shadow: 0 0 8px #ffc700;
-      z-index: 2;
-    }
-
-    /* 圖標與展開狀態控制 */
-    .social-main-btn .chat-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ffffff;
-      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
-    }
-    .social-main-btn .close-icon {
-      display: none;
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--gold);
-    }
-
-    .social-bubble-wrap.active .social-main-btn {
-      animation: none;
-      background: #052d1a;
-      border-color: var(--gold);
-      box-shadow: 0 0 20px rgba(255, 199, 0, 0.5);
-    }
+    .social-main-btn:hover { transform: scale(1.1) rotate(4deg); box-shadow: 0 0 32px rgba(0, 255, 136, 0.9); }
+    .bubble-radar { position: absolute; inset: -6px; border-radius: 50%; border: 1.5px solid rgba(0, 255, 136, 0.7); animation: radarWave 2s ease-out infinite; pointer-events: none; }
+    @keyframes radarWave { 0% { transform: scale(0.9); opacity: 0.9; } 100% { transform: scale(1.45); opacity: 0; } }
+    .online-indicator { position: absolute; top: 2px; right: 2px; width: 12px; height: 12px; background: #ffc700; border: 2px solid #031c10; border-radius: 50%; box-shadow: 0 0 8px #ffc700; z-index: 2; }
+    .social-main-btn .chat-icon { display: flex; align-items: center; justify-content: center; color: #ffffff; filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5)); }
+    .social-main-btn .close-icon { display: none; font-size: 1.3rem; font-weight: 700; color: var(--gold); }
+    .social-bubble-wrap.active .social-main-btn { animation: none; background: #052d1a; border-color: var(--gold); box-shadow: 0 0 20px rgba(255, 199, 0, 0.5); }
     .social-bubble-wrap.active .bubble-radar { display: none; }
     .social-bubble-wrap.active .chat-icon { display: none; }
     .social-bubble-wrap.active .close-icon { display: block; }
-
-    /* 3 秒輕輕晃動動畫關鍵影格 */
-    @keyframes bubbleWiggle {
-      0%, 80%, 100% { transform: rotate(0deg) scale(1); }
-      85% { transform: rotate(-12deg) scale(1.05); }
-      90% { transform: rotate(10deg) scale(1.05); }
-      95% { transform: rotate(-6deg) scale(1.03); }
-    }
-
-    /* 子項目列表 (預設隱藏) */
-    .social-menu {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      opacity: 0;
-      transform: translateY(16px) scale(0.9);
-      pointer-events: none;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    /* 展開時浮現 */
-    .social-bubble-wrap.active .social-menu {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-      pointer-events: auto;
-    }
-
-    /* 子項目膠囊按鈕 */
-    .social-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(4, 40, 24, 0.92);
-      border: 1px solid var(--line);
-      color: var(--text);
-      padding: 8px 14px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-family: "Chakra Petch", sans-serif;
-      font-weight: 700;
-      font-size: 0.85rem;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-      transition: all 0.2s ease;
-      white-space: nowrap;
-    }
-
-    .social-item:hover {
-      border-color: var(--magenta);
-      color: var(--magenta);
-      transform: translateX(-4px);
-      box-shadow: 0 0 14px rgba(0, 255, 136, 0.3);
-    }
-
+    @keyframes bubbleWiggle { 0%, 80%, 100% { transform: rotate(0deg) scale(1); } 85% { transform: rotate(-12deg) scale(1.05); } 90% { transform: rotate(10deg) scale(1.05); } 95% { transform: rotate(-6deg) scale(1.03); } }
+    .social-menu { display: flex; flex-direction: column; gap: 10px; opacity: 0; transform: translateY(16px) scale(0.9); pointer-events: none; transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+    .social-bubble-wrap.active .social-menu { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+    .social-item { display: flex; align-items: center; gap: 10px; background: rgba(4, 40, 24, 0.92); border: 1px solid var(--line); color: var(--text); padding: 8px 14px; border-radius: 30px; text-decoration: none; font-family: "Chakra Petch", sans-serif; font-weight: 700; font-size: 0.85rem; backdrop-filter: blur(10px); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4); transition: all 0.2s ease; white-space: nowrap; }
+    .social-item:hover { border-color: var(--magenta); color: var(--magenta); transform: translateX(-4px); box-shadow: 0 0 14px rgba(0, 255, 136, 0.3); }
     .social-item svg { stroke: var(--magenta); }
     .social-item:hover svg { stroke: var(--gold); }
-
-    /* 手機端微調尺寸 */
     @media (max-width: 768px) {
       .social-bubble-wrap { bottom: 18px; right: 14px; }
       .social-main-btn { width: 46px; height: 46px; font-size: 1.25rem; }
       .social-item { padding: 7px 12px; font-size: 0.8rem; }
     }
-    
   </style>
 </head>
 
@@ -443,15 +491,15 @@
   <div class="scan"></div>
   <div id="cursor-glow"></div>
 
-  <!-- 【區塊 6】頂部導航欄 (具備已調試好的手機專屬動作群) -->
-  <nav>
+  <!-- 【區塊 6】頂部導航欄 (統一雙向閉環) -->
+  <nav class="top-nav">
     <div class="nav-in">
       <a class="logo-box" href="../">
         <img src="../logo.webp" alt="MATE369 Logo" class="logo-img" onerror="this.src='../logo.ico'">
         <span class="logo-fallback"><span class="dot"></span><span>MATE369</span></span>
       </a>
 
-      <!-- 電腦版選單 (此處 About 為 active 高亮) -->
+      <!-- 電腦版選單 (About 為高亮) -->
       <div class="nav-links">
         <a data-en="Home" data-zh="首頁" href="../">Home</a>
         <a data-en="Games" data-zh="精選遊戲" href="../games/">Games</a>
@@ -466,7 +514,7 @@
       <!-- 手機端功能按鈕群 (語言 + 立即註冊 + 漢堡) -->
       <div class="mobile-actions" style="display:flex; align-items:center; gap:8px;">
         <button class="lang" id="langBtnTop" style="padding:4px 8px; font-size:0.75rem;">EN</button>
-        <a class="btn btn-nav-reg track-outbound" data-en="Register" data-zh="立即註冊" href="javascript:void(0);" style="padding:6px 12px !important; font-size:0.78rem !important;">Register</a>
+        <a class="btn btn-nav-reg track-outbound" data-en="Register" data-zh="註冊" href="javascript:void(0);" style="padding:6px 10px !important; font-size:0.78rem !important;">Register</a>
         <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">☰</button>
       </div>
     </div>
@@ -492,111 +540,222 @@
     <header class="reveal">
       <div class="badge">
         <span class="pulse"></span>
-        <span data-en="CORPORATE IDENTITY &amp; AUDIT CREDENTIALS" data-zh="品牌資質與官方合規審計標準">CORPORATE IDENTITY &amp; AUDIT CREDENTIALS</span>
+        <span data-en="OFFICIAL GAMING COMPLIANCE &amp; TRUST CENTER" data-zh="官方博弈牌照認證與資安信任中心">OFFICIAL GAMING COMPLIANCE &amp; TRUST CENTER</span>
       </div>
 
       <h1>
-        <span class="l1" data-en="ABOUT OUR MISSION" data-zh="關於平台願景">ABOUT OUR MISSION</span>
-        <span class="l2" data-en="INTEGRITY, RNG &amp; COMPLIANCE" data-zh="堅持誠信公平與卓越體驗">INTEGRITY, RNG &amp; COMPLIANCE</span>
+        <span class="l1" data-en="ABOUT MATE369" data-zh="關於 MATE369">ABOUT MATE369</span>
+        <span class="l2" data-en="TRUSTED &amp; CERTIFIED IN AUSTRALIA" data-zh="澳洲領先的合規旗艦娛樂品牌">TRUSTED &amp; CERTIFIED IN AUSTRALIA</span>
       </h1>
 
-      <p class="sub" data-en="Established to deliver Australia's most secure and transparent online casino experience. Operating under stringent international licensing with certified random mathematics."
-                     data-zh="專為澳洲玩家打造最安全、公正且高效的頂級線上娛樂入口。在國際權威牌照監管下運作，提供真實透明的演算法與極速出金體驗。">
-        Established to deliver Australia's most secure and transparent online casino experience. Operating under stringent international licensing with certified random mathematics.
+      <p class="sub" data-en="Operating with international regulatory compliance, audited RNG fair-play protocols, and automated sub-minute AUD settlements for Australian players."
+                     data-zh="秉持國際頂級合規標準：持有國際博弈授權、全線採用權威實驗室審計之隨機數公正演算法，並提供原生澳幣 PayID 秒級自動化清算體驗。">
+        Operating with international regulatory compliance, audited RNG fair-play protocols, and automated sub-minute AUD settlements for Australian players.
       </p>
     </header>
 
-    <!-- 🏛️ 4 大官方資安牌照徽章列 -->
-    <div class="trust-badges reveal">
-      <div class="trust-card">
-        <div class="trust-val">eCOGRA</div>
-        <div class="trust-lbl" data-en="RNG AUDITED" data-zh="公平隨機審計">RNG AUDITED</div>
-      </div>
-      <div class="trust-card">
-        <div class="trust-val">TLS 1.3</div>
-        <div class="trust-lbl" data-en="FINANCIAL CIPHER" data-zh="金融傳輸防護">FINANCIAL CIPHER</div>
-      </div>
-      <div class="trust-card">
-        <div class="trust-val">PAYID AUD</div>
-        <div class="trust-lbl" data-en="DIRECT SETTLEMENT" data-zh="原生澳幣結算">DIRECT SETTLEMENT</div>
-      </div>
-      <div class="trust-card">
-        <div class="trust-val">18+ RESTRICTED</div>
-        <div class="trust-lbl" data-en="RESPONSIBLE PLAY" data-zh="理性博弈指引">RESPONSIBLE PLAY</div>
-      </div>
-    </div>
-
-    <!-- 📝 SEO 深度長文專區 (品牌四大基石) -->
-    <div class="about-prose reveal">
-      
-      <!-- 模組 1 -->
-      <div class="about-block">
-        <h3 data-en="The Ultimate Destination for Real Money Online Pokies in Australia" data-zh="全澳真錢線上老虎機（Pokies）極致首選入口">The Ultimate Destination for Real Money Online Pokies in Australia</h3>
-        <p data-en="Engineered specifically for discerning Australian punters, our platform stands as the country's most reliable and comprehensive real money online casino. We house an expansive catalog of certified titles designed to cater to every playing style—from iconic 3-reel fruit classics to cutting-edge video slots."
-           data-zh="專為眼光獨到的澳洲玩家（Punters）量身打造，本平台已成為全澳最可靠、最全面的真錢線上娛樂城。我們擁有龐大的認證遊戲庫，滿足各類玩家的喜好——從經典的三軸水果機台，到最頂尖的現代視訊老虎機。">
-          Engineered specifically for discerning Australian punters, our platform stands as the country's most reliable and comprehensive real money online casino.
-        </p>
-        <p data-en="Discover Australia's favorite Hold and Win pokies, high-volatility Megaways mechanics offering over 117,649 ways to win, and life-changing progressive jackpots. Every title is backed by verified Return to Player (RTP) percentages, ensuring transparent mathematics and genuine big-win potential across every spin."
-           data-zh="在這裡，您可以探索全澳最受歡迎的 Hold and Win 機台、提供超過 117,649 種獲勝方式的高波動度 Megaways 玩法，以及具備改變命運彩金的累積彩池大獎（Progressive Jackpots）。每款遊戲皆具備經第三方驗證的真實返還率（RTP），確保每次旋轉都擁有透明的數學模型與真實的爆獎潛力。">
-          Discover Australia's favorite Hold and Win pokies, high-volatility Megaways mechanics offering over 117,649 ways to win, and life-changing progressive jackpots.
-        </p>
+    <!-- 
+    ==========================================================================
+    🏛️ 【區塊 7】官方博弈執照背書卡 (Curaçao eGaming Verified License)
+    ==========================================================================
+    -->
+    <section class="license-banner reveal">
+      <div class="license-icon-wrap">
+        <svg viewBox="0 0 24 24" width="46" height="46" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <path d="M9 12l2 2 4-4"/>
+        </svg>
       </div>
 
-      <!-- 模組 2 -->
-      <div class="about-block">
-        <h3 data-en="Immersive Live Dealer Tables: Blackjack, Roulette &amp; Baccarat" data-zh="身臨其境的真人視訊牌桌：二十一點、輪盤與百家樂">Immersive Live Dealer Tables: Blackjack, Roulette &amp; Baccarat</h3>
-        <p data-en="For players seeking the high-stakes thrill of a traditional brick-and-mortar venue from Crown Melbourne or The Star Sydney, our high-definition live casino bridges the gap. Broadcast directly in crystal-clear HD with professional live dealers, you can take your virtual seat at live Blackjack tables, experience European and American Roulette, or dive into rapid-fire Baccarat action."
-           data-zh="針對渴望體驗墨爾本皇冠（Crown Melbourne）或雪梨星億（The Star Sydney）等傳統實體賭場氛圍的玩家，我們的高畫質真人娛樂城完美消除了線上與線下的界線。所有牌桌均以頂級高畫質清晰實況轉播，並由專業荷官即時發牌。您可以隨時在真人二十一點入座、體驗歐式與美式輪盤的轉動心跳，或沉浸在緊湊明快的百家樂對局中。">
-          For players seeking the high-stakes thrill of a traditional brick-and-mortar venue from Crown Melbourne or The Star Sydney, our high-definition live casino bridges the gap.
+      <div class="license-info">
+        <h3 data-en="INTERNATIONAL ONLINE GAMING LICENSE VERIFIED" data-zh="國際在線博弈營運執照認證">INTERNATIONAL ONLINE GAMING LICENSE VERIFIED</h3>
+        <p data-en="MATE369 operates under Curacao Master eGaming License authorization (GLH-OCCHKTW07022026). All interactive gaming software, live streaming feeds, and settlement channels undergo strict statutory auditing."
+           data-zh="MATE369 嚴格遵循國際博弈委員會規範營運，獲頒合規在線娛樂營運許可執照（執照證號：GLH-OCCHKTW07022026）。全館電子遊戲、真人串流視訊與支付通道均受定期法定審計監管。">
+          MATE369 operates under Curacao Master eGaming License authorization (GLH-OCCHKTW07022026). All interactive gaming software, live streaming feeds, and settlement channels undergo strict statutory auditing.
         </p>
-        <p data-en="Featuring real-time game statistics, intuitive interfaces, and flexible betting limits designed for both casual punters and high rollers, we deliver the authentic casino floor atmosphere directly to your desktop and mobile devices."
-           data-zh="透過即時路單數據、直覺的操作介面，以及兼顧休閒賭客與高額投注者（High Rollers）的彈性限額，將最純正的賭場氛圍無縫呈現在您的電腦與行動裝置上。">
-          Featuring real-time game statistics, intuitive interfaces, and flexible betting limits designed for both casual punters and high rollers.
-        </p>
+        <span class="license-tag" data-en="LICENSE STATUS: ACTIVE &amp; AUDITED" data-zh="執照狀態：合法合規 · 審計生效中">LICENSE STATUS: ACTIVE &amp; AUDITED</span>
       </div>
 
-      <!-- 模組 3 -->
-      <div class="about-block">
-        <h3 data-en="Fast Payouts, Native AUD Banking &amp; Seamless PayID Integration" data-zh="極速出金、原生澳幣（AUD）結算與 PayID 即時存取">Fast Payouts, Native AUD Banking &amp; Seamless PayID Integration</h3>
-        <p data-en="We recognize that swift, hassle-free withdrawals are the benchmark of a trustworthy gaming operator. Our banking infrastructure is built explicitly for the Australian market, allowing you to deposit and withdraw in native Australian Dollars (AUD) with zero hidden conversion fees."
-           data-zh="我們深知快速、順暢的提款體驗是衡量一家值得信賴娛樂城的核心標準。我們的金流架構專為澳洲市場深度客製，支援原生澳幣（AUD）進行存提款，完全無任何隱藏匯率折損。">
-          We recognize that swift, hassle-free withdrawals are the benchmark of a trustworthy gaming operator. Our banking infrastructure is built explicitly for the Australian market.
-        </p>
-        <p data-en="Experience instant deposits and lightning-fast payouts via PayID and direct local bank transfer, or opt for rapid cryptocurrency withdrawals with USDT, BTC, and Ethereum. Protected by enterprise-tier 256-bit SSL encryption protocols, your financial transactions and sensitive account details are safeguarded round the clock."
-           data-zh="玩家可透過全澳最普及的 PayID 與本地銀行轉帳享受即時到帳與極速出金，亦可選擇 USDT、比特幣（BTC）及以太坊（ETH）等主流加密貨幣快速結算。所有金融交易均受企業級 256 位元 SSL 高強度加密協議保護，全天候守護您的資金安全與個人隱私。">
-          Experience instant deposits and lightning-fast payouts via PayID and direct local bank transfer, or opt for rapid cryptocurrency withdrawals with USDT, BTC, and Ethereum.
-        </p>
+      <div>
+        <a class="btn btn-primary track-outbound" data-en="VERIFY STATUS ›" data-zh="查驗證照資質 ›" href="javascript:void(0);">VERIFY STATUS ›</a>
+      </div>
+    </section>
+
+    <!-- 
+    ==========================================================================
+    🛡️ 4 大品牌核心基石 (Security, Payouts, RNG, Support)
+    ==========================================================================
+    -->
+    <section class="reveal">
+      <div class="sec-head">
+        <div class="eyebrow" data-en="OPERATIONAL PILLARS" data-zh="核心營運基石">OPERATIONAL PILLARS</div>
+        <h2 data-en="THE PILLARS OF <em>PLAYER SECURITY</em>" data-zh="四重防護 <em>構築極致安全遊玩環境</em>">THE PILLARS OF <em>PLAYER SECURITY</em></h2>
       </div>
 
-      <!-- 模組 4 -->
-      <div class="about-block">
-        <h3 data-en="Certified Fairness, Independent Audits &amp; Responsible Play Commitment" data-zh="認證公平性、獨立第三方審計與理性博弈承諾">Certified Fairness, Independent Audits &amp; Responsible Play Commitment</h3>
-        <p data-en="Fairness is non-negotiable. Operating under international licensing frameworks, all Random Number Generators (RNG) governing our pokie machines and virtual table games undergo rigorous auditing by independent testing laboratories, including eCOGRA and iTech Labs."
-           data-zh="公平性是我們絕不妥協的底線。本平台在國際牌照架構下嚴格營運，所有驅動老虎機與虛擬桌遊的隨機亂數產生器（RNG），皆經由 eCOGRA 和 iTech Labs 等權威獨立檢驗機構的嚴格審計認證。">
-          Fairness is non-negotiable. Operating under international licensing frameworks, all Random Number Generators (RNG) undergo rigorous auditing.
-        </p>
-        <p data-en="Alongside transparent gameplay, we champion Responsible Gambling across all operations. We provide Australian punters with comprehensive player protection tools, including customizable deposit caps, cooling-off breaks, and self-exclusion mechanisms, ensuring your gaming remains safe, sustainable, and purely entertaining."
-           data-zh="在提供公正透明對局的同時，我們於各項營運環節堅定推廣理性博弈。我們為澳洲玩家提供全方位的保護工具，包含自訂存款上限、冷靜期設定與自我限制機制，確保每位玩家的娛樂體驗始終保持在健康、安全且自律的軌道上。">
-          Alongside transparent gameplay, we champion Responsible Gambling across all operations. We provide Australian punters with comprehensive player protection tools.
-        </p>
+      <div class="pillars-grid">
+        
+        <!-- 基石 1 -->
+        <div class="pillar-card">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3 data-en="100% Certified RNG Fair Play" data-zh="100% 原廠公正 RNG 認證">100% Certified RNG Fair Play</h3>
+          <p data-en="All pokies and tables use accredited Random Number Generators audited by eCOGRA and iTech Labs to prevent manipulation."
+             data-zh="全館拉霸機與牌桌皆直接串接 Pragmatic Play 等國際原廠，採用通過 eCOGRA 與 iTech Labs 嚴格驗證的隨機演算法，杜絕任何作弊可能。">
+            All pokies and tables use accredited Random Number Generators audited by eCOGRA and iTech Labs.
+          </p>
+        </div>
+
+        <!-- 基石 2 -->
+        <div class="pillar-card">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <h3 data-en="Automated PayID Fast Payouts" data-zh="澳洲本地 PayID 秒級極速出金">Automated PayID Fast Payouts</h3>
+          <p data-en="Direct integration with Australian PayID gateways enables automated sub-minute cashouts with zero transaction fees."
+             data-zh="直連澳洲本地四大銀行清算網關，實裝自動化提款審核機制，資金秒級直達個人帳戶，免手續費、零匯差損耗。">
+            Direct integration with Australian PayID gateways enables automated sub-minute cashouts with zero transaction fees.
+          </p>
+        </div>
+
+        <!-- 基石 3 -->
+        <div class="pillar-card">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <h3 data-en="TLS 1.3 Bank-Grade Encryption" data-zh="TLS 1.3 銀行級傳輸加密">TLS 1.3 Bank-Grade Encryption</h3>
+          <p data-en="Every packet sent between your browser and our servers is secured by military-grade 256-bit SSL cryptographic tunnels."
+             data-zh="平台全站採用高規格 256 位元動態加密通道，所有會員資料、身份認證證件與銀行往來明細均受頂級隱私防護。">
+            Every packet sent between your browser and our servers is secured by military-grade 256-bit SSL cryptographic tunnels.
+          </p>
+        </div>
+
+        <!-- 基石 4 -->
+        <div class="pillar-card">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <h3 data-en="24/7 Dedicated Player Concierge" data-zh="24/7 雙語真人客服專員">24/7 Dedicated Player Concierge</h3>
+          <p data-en="Multilingual support specialists are on standby round the clock to resolve transaction, account, and rule inquiries."
+             data-zh="中英雙語資深金流與技術專員全年無休在線，即時解決您的充值提款、機台規則與 VIP 會員權益問題。">
+            Multilingual support specialists are on standby round the clock to resolve transaction and account inquiries.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 
+    ==========================================================================
+    ⚖️ 國際第三方公證審計標章列 (Audit Certifications)
+    ==========================================================================
+    -->
+    <section class="audit-box reveal">
+      <div class="audit-title" data-en="INDEPENDENT TESTING LABORATORIES &amp; ETHICAL STANDARDS" data-zh="國際獨立檢驗實驗室審計與合規標準">
+        INDEPENDENT TESTING LABORATORIES &amp; ETHICAL STANDARDS
+      </div>
+      <div class="audit-chips">
+        <div class="audit-badge">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>eCOGRA CERTIFIED</span>
+        </div>
+        <div class="audit-badge">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>iTech Labs AUDITED</span>
+        </div>
+        <div class="audit-badge">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>GLI-19 COMPLIANT</span>
+        </div>
+        <div class="audit-badge">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span>18+ RESPONSIBLE PLAY</span>
+        </div>
+        <div class="audit-badge">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span>GAMCARE PROTECTED</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 
+    ==========================================================================
+    📜 官方合規政策與免責手風琴 (Terms, Privacy & Regulatory Accordion)
+    ==========================================================================
+    -->
+    <section class="reveal">
+      <div class="sec-head">
+        <div class="eyebrow" data-en="LEGAL &amp; COMPLIANCE" data-zh="法律合規條例">LEGAL &amp; COMPLIANCE</div>
+        <h2 data-en="TERMS OF SERVICE <em>&amp; PRIVACY POLICIES</em>" data-zh="平台規範 <em>與用戶隱私保護協議</em>">TERMS OF SERVICE <em>&amp; PRIVACY POLICIES</em></h2>
       </div>
 
-    </div>
+      <div class="policy-wrapper">
+        
+        <!-- 條例 1 -->
+        <div class="policy-card" onclick="togglePolicy(this)">
+          <div class="policy-header">
+            <h3 data-en="1. Fair Gaming &amp; RNG Certification Standards" data-zh="1. 公平遊戲原則與 RNG 隨機數算法驗證">1. Fair Gaming &amp; RNG Certification Standards</h3>
+            <div class="policy-icon">+</div>
+          </div>
+          <div class="policy-body">
+            <p data-en="MATE369 strictly operates on certified original software providers. Neither the operator nor the player has the ability to influence the outcome of any slot spin, live shoe, or virtual event. All statistical return percentages (RTP) match the original manufacturer specifications."
+               data-zh="MATE369 堅定落實公平博弈原則。所有拉霸機與真人牌桌均直接串接國際正版授權通道，營運方或第三方均無權更動開獎結果。機台 RTP 數值均與原廠認證公佈數據嚴格一致。">
+              MATE369 strictly operates on certified original software providers. Neither the operator nor the player has the ability to influence the outcome of any slot spin.
+            </p>
+          </div>
+        </div>
+
+        <!-- 條例 2 -->
+        <div class="policy-card" onclick="togglePolicy(this)">
+          <div class="policy-header">
+            <h3 data-en="2. Australian PayID &amp; KYC Verification Policy" data-zh="2. 澳洲 PayID 出入金與實名防洗錢政策（KYC）">2. Australian PayID &amp; KYC Verification Policy</h3>
+            <div class="policy-icon">+</div>
+          </div>
+          <div class="policy-body">
+            <p data-en="To ensure strict compliance with global Anti-Money Laundering (AML) directives, withdrawal accounts must match the registered user's legal full name. Verification is completed within minutes upon submission, ensuring your withdrawals remain secure, automated, and irreversible by malicious actors."
+               data-zh="為符合國際反洗錢（AML）與金融規範，玩家提款之澳洲本地銀行卡戶名必須與帳號實名登記姓名一致。系統於首次提款完成認證後，即可啟動永久秒級自動撥款程序，有效防範帳號盜用風險。">
+              To ensure strict compliance with global Anti-Money Laundering (AML) directives, withdrawal accounts must match the registered user's legal full name.
+            </p>
+          </div>
+        </div>
+
+        <!-- 條例 3 -->
+        <div class="policy-card" onclick="togglePolicy(this)">
+          <div class="policy-header">
+            <h3 data-en="3. Responsible Gambling &amp; Player Protection" data-zh="3. 負責任博弈與未成年人保護準則">3. Responsible Gambling &amp; Player Protection</h3>
+            <div class="policy-icon">+</div>
+          </div>
+          <div class="policy-body">
+            <p data-en="Online entertainment should always remain a safe, controlled hobby. MATE369 strictly enforces an 18+ age verification requirement. We provide voluntary deposit limits, cooling-off periods, and self-exclusion mechanisms in partnership with GamCare and Gambling Help Online (1800 858 858)."
+               data-zh="線上娛樂應當是一項充滿樂趣的休閒活動。本平台嚴格禁止 18 歲以下未成年人註冊。我們提供單日入金限額設定、冷靜期申請與自我隔離機制，並積極配合澳洲 Gambling Help Online 協助玩家維持健康的娛樂生活。">
+              Online entertainment should always remain a safe, controlled hobby. MATE369 strictly enforces an 18+ age verification requirement.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
 
     <!-- 頁尾轉換大卡片 -->
     <div class="final-cta reveal">
-      <h2 data-en="JOIN AUSTRALIA'S MOST<br><em>TRUSTED GAMING FAMILY</em>" data-zh="加入全澳最值得信賴的<br><em>頂級娛樂大家庭</em>">
-        JOIN AUSTRALIA'S MOST<br><em>TRUSTED GAMING FAMILY</em>
+      <h2 data-en="PLAY WITH CONFIDENCE<br><em>ON AUSTRALIA'S SAFEST PORTAL</em>" data-zh="即刻加入澳洲最具公信力<br><em>與出金保障的旗艦娛樂平台</em>">
+        PLAY WITH CONFIDENCE<br><em>ON AUSTRALIA'S SAFEST PORTAL</em>
       </h2>
-      <p data-en="Experience true fairness, transparent RNG odds, and unmatched local AUD payouts. Register in seconds and claim your $70 starter package."
-         data-zh="親身體驗最真實的國際認證機率、透明出款與專屬客服。30 秒快速註冊，立即領取 $70 專屬啟動彩金。">
-        Experience true fairness, transparent RNG odds, and unmatched local AUD payouts. Register in seconds and claim your $70 starter package.
+      <p data-en="Experience transparent payouts, licensed security, and a 30-second sign-up with $70 in starter funds today."
+         data-zh="體驗透明秒級出款、合規執照保障與 30 秒開戶領 $70 啟動金，即刻開展您的非凡娛樂之旅！">
+        Experience transparent payouts, licensed security, and a 30-second sign-up with $70 in starter funds today.
       </p>
-      <a class="btn btn-primary btn-large track-outbound" data-href="" data-en="CLAIM $70 &amp; GET STARTED ›" data-zh="立即領取 $70 開始體驗 ›" href="javascript:void(0);">
-        CLAIM $70 &amp; GET STARTED ›
+      <a class="btn btn-primary btn-large track-outbound" data-href="" data-en="CLAIM $70 &amp; PLAY NOW ›" data-zh="立即領取 $70 開戶 ›" href="javascript:void(0);">
+        CLAIM $70 &amp; PLAY NOW ›
       </a>
     </div>
   </main>
+
+  <!-- 🚀 【新增功能】回到頂部懸浮火箭按鈕 (最高層級穿透 + 行內直通) -->
+  <button class="back-to-top" id="backToTopBtn" aria-label="Back to Top" title="Back to Top"
+          onclick="window.scrollTo({top: 0, behavior: 'smooth'}); document.documentElement.scrollTop=0; document.body.scrollTop=0;">
+    <svg viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"/><path d="M12 9v12"/></svg>
+  </button>
 
   <!-- 官方正式頁尾 -->
   <footer>
@@ -605,13 +764,14 @@
         <a href="../" data-en="Home" data-zh="首頁">Home</a>
         <a href="../games/" data-en="Games" data-zh="精選遊戲">Games</a>
         <a href="../features/" data-en="Features" data-zh="特色優勢">Features</a>
+        <a href="../guides/" data-en="Guides" data-zh="機台攻略">Guides</a>
         <a href="../faq/" data-en="FAQ" data-zh="常見問答">FAQ</a>
         <a href="./" data-en="About" data-zh="關於我們">About</a>
       </div>
       <div style="max-width: 820px; margin: 18px auto; line-height: 1.6; font-size: 0.85rem; color: var(--muted);"
-           data-en="Our platform operates with certified online pokies, casino entertainment, and verified payment gateways. We strictly enforce responsible gambling policies for Australian participants."
-           data-zh="本平台提供經國際認證之線上老虎機、娛樂城遊戲與安全支付通道。我們嚴格落實澳洲在地理性博弈相關指引。">
-        Our platform operates with certified online pokies, casino entertainment, and verified payment gateways.
+           data-en="Read official policies, terms of bonus redemption, and fair gaming standards. Please gamble responsibly. 18+ only."
+           data-zh="查閱官方營運政策、優惠領取規範與公平遊戲標準。請落實理性博弈，未成年人嚴禁參與。">
+        Read official policies, terms of bonus redemption, and fair gaming standards. Please gamble responsibly. 18+ only.
       </div>
       <div style="font-size: 0.8rem; color: rgba(255,255,255,0.4);"
            data-en="© 2026 MATE369 · Australia Online Casino Platform · Play Responsibly · 18+ Only"
@@ -623,17 +783,14 @@
 
   <!-- 💬 懸浮社群氣泡模組 (定稿旗艦版：雷達光環 + 在線燈 + 3秒微晃 + 展開選單) -->
   <div class="social-bubble-wrap" id="socialBubbleWrap">
-    <!-- 展開的子按鈕選單 (由下往上冒出) -->
     <div class="social-menu" id="socialMenu">
-      <!-- 子項目 1: 官方 Telegram -->
-      <a class="social-item track-outbound" data-href="https://t.me/你的TG頻道" href="javascript:void(0);" title="Telegram">
+      <a class="social-item track-outbound" data-href="https://t.me/mate369_official" href="javascript:void(0);" title="Telegram">
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M21.5 2L2 9.5l7 3 2.5 7.5 3-4 5.5 3.5L21.5 2z"/>
         </svg>
         <span class="social-text">Telegram</span>
       </a>
 
-      <!-- 子項目 推特 -->
       <a class="social-item track-outbound" data-href="https://x.com/Mate369_ofcl" href="javascript:void(0);" title="X">
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
@@ -641,7 +798,6 @@
         <span class="social-text">X</span>
       </a>
 
-      <!-- 子項目 3: WhatsApp (若不需要整行刪除即可) -->
       <a class="social-item track-outbound" data-href="https://wa.me/61469363369" href="javascript:void(0);" title="WhatsApp">
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
@@ -650,7 +806,6 @@
       </a>
     </div>
 
-    <!-- 常駐主氣泡 (帶 3 秒微晃動畫 + 高清對話 SVG) -->
     <button class="social-main-btn" id="socialMainBtn" aria-label="Toggle Social Menu">
       <span class="bubble-radar"></span>
       <span class="online-indicator"></span>
@@ -668,7 +823,36 @@
 
   <!-- 【區塊 16】核心動態引擎 -->
   <script>
-    // 1. 手機版抽屜選單控制
+    // 1. 條款政策手風琴折疊控制
+    function togglePolicy(card) {
+      card.classList.toggle('open');
+    }
+
+    // 2. 🚀 回到頂端 (Back to Top) 智慧滾動引擎
+    const backToTopBtn = document.getElementById('backToTopBtn');
+    if (backToTopBtn) {
+      window.addEventListener('scroll', function() {
+        const scrollPos = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        if (scrollPos > 350) {
+          backToTopBtn.classList.add('show');
+        } else {
+          backToTopBtn.classList.remove('show');
+        }
+      });
+
+      backToTopBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        try {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } catch (err) {
+          document.documentElement.scrollTop = 0;
+          document.body.scrollTop = 0;
+        }
+      });
+    }
+
+    // 3. 手機版抽屜選單控制
     const menuToggle = document.getElementById('menuToggle');
     const mobileMenu = document.getElementById('mobileMenu');
 
@@ -683,10 +867,9 @@
       menuToggle.addEventListener('click', toggleMenu);
     }
 
-    // 2. ✨ 雙語即時切換引擎
-    function switchLanguage() {
-      let currentLang = (document.documentElement.lang === 'zh') ? 'en' : 'zh';
-      const label = (currentLang === 'en') ? '中文' : 'EN';
+    // 4. ✨ 雙語即時切換引擎 (自帶載入初始化，修復刷新中英衝突)
+    function applyLanguage(targetLang) {
+      const label = (targetLang === 'en') ? '中文' : 'EN';
       
       const pcBtn = document.getElementById('langBtn');
       const drawerBtn = document.getElementById('langBtnDrawer');
@@ -696,10 +879,15 @@
       if (topBtn) topBtn.textContent = label;
 
       document.querySelectorAll('[data-en]').forEach(function(el) {
-        const text = (currentLang === 'en') ? el.getAttribute('data-en') : el.getAttribute('data-zh');
+        const text = (targetLang === 'en') ? el.getAttribute('data-en') : el.getAttribute('data-zh');
         if (text !== null) el.innerHTML = text;
       });
-      document.documentElement.lang = (currentLang === 'en') ? 'en-AU' : 'zh';
+      document.documentElement.lang = (targetLang === 'en') ? 'en-AU' : 'zh';
+    }
+
+    function switchLanguage() {
+      const nextLang = (document.documentElement.lang === 'zh') ? 'en' : 'zh';
+      applyLanguage(nextLang);
     }
 
     const pcLangBtn = document.getElementById('langBtn');
@@ -709,7 +897,12 @@
     if (drawerLangBtn) drawerLangBtn.addEventListener('click', switchLanguage);
     if (topLangBtn) topLangBtn.addEventListener('click', switchLanguage);
 
-    // 3. 🎯 動態跳轉引擎 (廣告參數無損繼承)
+    (function initLanguage() {
+      const defaultLang = document.documentElement.lang.startsWith('zh') ? 'zh' : 'en';
+      applyLanguage(defaultLang);
+    })();
+
+    // 5. 🎯 動態跳轉引擎 (廣告參數無損繼承)
     function getFinalTargetUrl(customUrl) {
       const defaultRegisterUrl = "https://www.mate369.com/Register?p=JC";
       const targetBase = (customUrl && customUrl.trim() !== "") ? customUrl.trim() : defaultRegisterUrl;
@@ -741,7 +934,7 @@
       setTimeout(function() { window.location.href = destination; }, 150);
     });
 
-    // 4. ✨ 滑鼠跟隨光斑
+    // 6. ✨ 滑鼠跟隨光斑
     (function() {
       const glow = document.getElementById('cursor-glow');
       if (window.matchMedia('(hover: none)').matches || !glow) return;
@@ -751,7 +944,7 @@
       });
     })();
 
-    // 5. 滾動淡入
+    // 7. 滾動淡入
     (function() {
       if (!('IntersectionObserver' in window)) return;
       const io = new IntersectionObserver(function(entries) {
@@ -768,26 +961,23 @@
       });
     })();
 
-    // 💬 懸浮社群氣泡點擊開關與全域點擊收合控制
+    // 8. 💬 懸浮社群氣泡點擊開關與全域點擊收合控制
     (function() {
       const wrap = document.getElementById('socialBubbleWrap');
       const mainBtn = document.getElementById('socialMainBtn');
       if (!wrap || !mainBtn) return;
 
-      // 點擊主氣泡切換開關
       mainBtn.addEventListener('click', function(e) {
         e.stopPropagation();
         wrap.classList.toggle('active');
       });
 
-      // 點擊頁面其他空白處時自動收合
       document.addEventListener('click', function(e) {
         if (!wrap.contains(e.target)) {
           wrap.classList.remove('active');
         }
       });
     })();
-    
   </script>
 </body>
 </html>
