@@ -179,11 +179,18 @@
       font-size: 0.85rem !important;
       box-shadow: 0 0 14px rgba(255,27,141,0.4) !important;
     }
-    /* 漢堡按鈕樣式 */
+    /* 🍔 漢堡按鈕：賽博呼吸光暈 + 文字提示，大幅提高點擊率 */
     .menu-toggle {
-      display: none; background: none; border: 1px solid var(--line);
-      color: var(--magenta); font-size: 1.4rem; padding: 4px 10px;
-      cursor: pointer; border-radius: 4px; line-height: 1;
+      display: none; background: rgba(0, 255, 136, 0.08); border: 1.5px solid var(--magenta);
+      color: var(--magenta); font-family: "Chakra Petch"; font-weight: 700;
+      font-size: 0.85rem; padding: 5px 10px; cursor: pointer; border-radius: 4px;
+      line-height: 1; align-items: center; gap: 6px;
+      box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+      animation: menuBlink 2.5s infinite;
+    }
+    @keyframes menuBlink {
+      0%, 100% { box-shadow: 0 0 8px rgba(0, 255, 136, 0.25); border-color: rgba(0, 255, 136, 0.4); }
+      50% { box-shadow: 0 0 18px rgba(0, 255, 136, 0.7); border-color: var(--magenta); }
     }
 
     /* 手機抽屜菜單樣式 */
@@ -537,6 +544,20 @@
       .inforow { grid-template-columns: 1fr; }
       .infolabel { border-right: none; padding: 10px 14px 2px; }
       .infoval { padding: 0 14px 10px; }
+
+      .back-to-top {
+      position: fixed; bottom: 24px; right: 20px; width: 48px; height: 48px;
+      border-radius: 50%; background: var(--panel-solid); border: 1.5px solid var(--line);
+      color: var(--magenta); cursor: pointer !important; display: flex; align-items: center;
+      justify-content: center; z-index: 99999 !important; opacity: 0; pointer-events: none;
+      transform: translateY(16px); transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+    }
+    .back-to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .back-to-top:hover { border-color: var(--magenta); background: #00ff88; color: #031c10; box-shadow: 0 0 20px rgba(0,255,136,0.8); }
+    .back-to-top svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2.5; pointer-events: none; }
+
+      
     }
   </style>
 </head>
@@ -565,12 +586,14 @@
         <a data-en="Guides" data-zh="機台攻略" href="./guides/">Guides</a>
         <a data-en="FAQ" data-zh="常見問題" href="./faq/">FAQ</a>
         <a data-en="about" data-zh="關於我們" href="./about/">about</a>
-        <button class="lang" id="langBtn">EN</button>
+        <button class="lang" id="langBtn">中文</button>
         <a class="btn btn-nav-reg track-outbound" data-en="Register" data-zh="立即註冊" href="javascript:void(0);">Register</a>
       </div>
 
       <!-- 手機端漢堡圖示 -->
-      <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">☰</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+        <span>MENU</span> <span>☰</span>
+      </button>
     </div>
   </nav>
 
@@ -583,7 +606,7 @@
     <a data-en="about" data-zh="關於我們" href="./about/">about</a>
     <div style="display:flex; justify-content:space-between; align-items:center; padding-top:10px;">
       <span style="font-family:'Chakra Petch'; font-size:0.9rem; color:var(--muted);">Language:</span>
-      <button class="lang" id="langBtnDrawer">EN</button>
+      <button class="lang" id="langBtnDrawer">中文</button>
     </div>
     <a class="btn btn-primary track-outbound" style="width:100%; margin-top:8px;" data-en="REGISTER NOW ›" data-zh="立即註冊領彩金 ›" href="javascript:void(0);">REGISTER NOW ›</a>
   </div>
@@ -1035,6 +1058,12 @@
     </div>
   </section>
 
+  <!-- 🚀 【回到頂端火箭按鈕】(最高層級穿透 + 行內直通) -->
+  <button class="back-to-top" id="backToTopBtn" aria-label="Back to Top" title="Back to Top"
+          onclick="window.scrollTo({top: 0, behavior: 'smooth'}); document.documentElement.scrollTop=0; document.body.scrollTop=0;">
+    <svg viewBox="0 0 24 24"><path d="M18 15 L12 9 L6 15"/><path d="M12 9 L12 21"/></svg>
+  </button>
+
   <!-- 官方正式頁尾 -->
   <footer>
     <div class="wrap">
@@ -1138,27 +1167,35 @@
     // -------------------------------------------------------------
     // 5. ✨ 中英雙語秒級無刷新切換引擎 (支援電腦版與手機抽屜雙切換)
     // -------------------------------------------------------------
-    (function() {
-      const btn = document.getElementById('langBtn');
+    // 5. ✨ 雙語即時切換引擎 (初始化對齊：當前英文時按鈕顯示「中文」)
+    function applyLanguage(targetLang) {
+      const label = (targetLang === 'en') ? '中文' : 'EN';
+      const pcBtn = document.getElementById('langBtn');
       const drawerBtn = document.getElementById('langBtnDrawer');
-      let currentLang = 'en';
+      if (pcBtn) pcBtn.textContent = label;
+      if (drawerBtn) drawerBtn.textContent = label;
 
-      function toggleLanguage() {
-        currentLang = (currentLang === 'en') ? 'zh' : 'en';
-        document.querySelectorAll('[data-en]').forEach(function(el) {
-          const text = (currentLang === 'en') ? el.getAttribute('data-en') : el.getAttribute('data-zh');
-          if (text !== null) {
-            el.innerHTML = text;
-          }
-        });
-        const label = (currentLang === 'en') ? '中文' : 'EN';
-        if (btn) btn.textContent = label;
-        if (drawerBtn) drawerBtn.textContent = label;
-        document.documentElement.lang = (currentLang === 'en') ? 'en-AU' : 'zh';
-      }
+      document.querySelectorAll('[data-en]').forEach(function(el) {
+        const text = (targetLang === 'en') ? el.getAttribute('data-en') : el.getAttribute('data-zh');
+        if (text !== null) el.innerHTML = text;
+      });
+      document.documentElement.lang = (targetLang === 'en') ? 'en-AU' : 'zh';
+    }
 
-      if (btn) btn.addEventListener('click', toggleLanguage);
-      if (drawerBtn) drawerBtn.addEventListener('click', toggleLanguage);
+    function switchLanguage() {
+      const nextLang = (document.documentElement.lang === 'zh') ? 'en' : 'zh';
+      applyLanguage(nextLang);
+    }
+
+    const pcLangBtn = document.getElementById('langBtn');
+    const drawerLangBtn = document.getElementById('langBtnDrawer');
+    if (pcLangBtn) pcLangBtn.addEventListener('click', switchLanguage);
+    if (drawerLangBtn) drawerLangBtn.addEventListener('click', switchLanguage);
+
+    // 頁面載入時自動初始化
+    (function initLanguage() {
+      const defaultLang = document.documentElement.lang.startsWith('zh') ? 'zh' : 'en';
+      applyLanguage(defaultLang);
     })();
 
     // -------------------------------------------------------------
@@ -1261,6 +1298,16 @@
       window.addEventListener('resize', () => goToSlide(currentIndex));
       startTimer();
     })();
+
+
+    const backToTopBtn = document.getElementById('backToTopBtn');
+    if (backToTopBtn) {
+      window.addEventListener('scroll', function() {
+        const scrollPos = window.pageYOffset || document.documentElement.scrollTop || 0;
+        if (scrollPos > 350) backToTopBtn.classList.add('show');
+        else backToTopBtn.classList.remove('show');
+      });
+    }
 
     // -------------------------------------------------------------
     // 7. 滾動淡入 IntersectionObserver
