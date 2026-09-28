@@ -210,7 +210,11 @@
     @media (max-width: 768px) {
       /* 1. 電腦導航隱藏，顯示手機專屬頂部功能區 */
       .nav-links { display: none !important; }
-      .mobile-actions { display: flex !important; }
+      .mobile-actions {
+       display: flex !important;
+       align-items: center !important;
+       gap: 10px !important; /* 👈 拉開兩顆按鈕之間的距離 */
+      }
 
       /* 2. 手機端頂部高度與留白優化，徹底消除緊繃感 */
       .nav-in {
