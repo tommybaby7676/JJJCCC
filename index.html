@@ -483,7 +483,7 @@
     .infoval { padding: 14px 18px; color: var(--text); font-size: 0.95rem; display: flex; align-items: center; }
 
     /* SEO 長文 */
-    .prose { max-width: 880px; margin: 0 auto; }
+    .prose { max-width: 880px; text-align: left; }
     /* 📝 SEO 內容區：增強文字立體陰影，消除背景光斑干擾 */
     .prose h3 {
       font-family: "Chakra Petch", "Noto Sans SC";
@@ -1000,25 +1000,28 @@
     <div class="wrap">
       <div class="sec-head reveal">
         <div class="eyebrow" data-en="ABOUT OUR PLATFORM" data-zh="關於平台">ABOUT OUR PLATFORM</div>
-        <h2 data-en="AUSTRALIA'S PREMIER ONLINE POKIES<br class='pc-br'> & REAL MONEY CASINO DESTINATION" data-zh="值得信賴的澳洲線上娛樂城<br class='pc-br'> <em>與真錢老虎機旗艦</em>">AUSTRALIA'S PREMIER ONLINE POKIES<br class="pc-br"> <em>& REAL MONEY CASINO DESTINATION</em></h2>
+        <h2 data-en="AUSTRALIA'S PREMIER ONLINE POKIES<br class='pc-br'> &amp; REAL MONEY CASINO DESTINATION" data-zh="值得信賴的澳洲線上娛樂城<br class='pc-br'> <em>與真錢老虎機旗艦</em>">AUSTRALIA'S PREMIER ONLINE POKIES<br class="pc-br"> <em>&amp; REAL MONEY CASINO DESTINATION</em></h2>
       </div>
 
+      <!-- 1. 文字專用區：靠左排版，好閱讀 -->
       <div class="prose reveal">
         <h3 data-en="The Ultimate Destination for Real Money Online Pokies in Australia" data-zh="全澳真錢線上老虎機（Pokies）極致首選入口">The Ultimate Destination for Real Money Online Pokies in Australia</h3>
         <p data-en="Engineered specifically for discerning Australian punters, our platform stands as the country's most reliable and comprehensive real money online casino. We house an expansive catalog of certified titles designed to cater to every playing style—from iconic 3-reel fruit classics to cutting-edge video slots. Discover Australia's favorite Hold and Win pokies, high-volatility Megaways mechanics offering over 117,649 ways to win, and life-changing progressive jackpots. Every title is backed by verified Return to Player (RTP) percentages, ensuring transparent mathematics and genuine big-win potential across every spin."
            data-zh="專為眼光獨到的澳洲玩家（Punters）量身打造，本平台已成為全澳最可靠、最全面的真錢線上娛樂城。我們擁有龐大的認證遊戲庫，滿足各類玩家的喜好——從經典的三軸水果機台，到最頂尖的現代視訊老虎機。在這裡，您可以探索全澳最受歡迎的 Hold and Win 機台、提供超過 117,649 種獲勝方式的高波動度 Megaways 玩法，以及具備改變命運彩金的累積彩池大獎（Progressive Jackpots）。每款遊戲皆具備經第三方驗證的真實返還率（RTP），確保每次旋轉都擁有透明的數學模型與真實的爆獎潛力。">
           Engineered specifically for discerning Australian punters, our platform stands as the country's most reliable and comprehensive real money online casino. We house an expansive catalog of certified titles designed to cater to every playing style—from iconic 3-reel fruit classics to cutting-edge video slots. Discover Australia's favorite Hold and Win pokies, high-volatility Megaways mechanics offering over 117,649 ways to win, and life-changing progressive jackpots. Every title is backed by verified Return to Player (RTP) percentages, ensuring transparent mathematics and genuine big-win potential across every spin.
         </p>
+      </div> <!-- 👈 2. 在這裡就先把 .prose 關閉！ -->
 
-        <!-- 導流至品牌背書與合規頁面 -->
-        <div style="text-align:center; margin-top:24px;">
-          <a class="btn btn-ghost" href="./about/" style="padding:14px 32px; font-size:1.02rem;"
-             data-en="VERIFY OFFICIAL GAMING LICENSE & SECURITY PROTOCOLS ›"
-             data-zh="查驗官方國際執照、公正認證與資安中心 ›">
-            VERIFY OFFICIAL GAMING LICENSE & SECURITY PROTOCOLS ›
-          </a>
-        </div>
+      <!-- 3. 按鈕獨立一層：在 wrap 裡全寬置中，不被 prose 的寬度綁架 -->
+      <div style="text-align: center; margin-top: 32px;" class="reveal">
+        <a class="btn btn-ghost" href="./about/" style="padding: 14px 32px; font-size: 1.02rem;"
+           data-en="VERIFY OFFICIAL GAMING LICENSE &amp; SECURITY PROTOCOLS ›"
+           data-zh="查驗官方國際執照、公正認證與資安中心 ›">
+          VERIFY OFFICIAL GAMING LICENSE &amp; SECURITY PROTOCOLS ›
+        </a>
       </div>
+
+    </div> <!-- wrap 結尾 -->
   </section>
 
   <!-- ============================================================================
