@@ -166,10 +166,39 @@
     .mobile-actions { display: none !important; }
     /* 手機版 (< 768px)：隱藏電腦版導航，顯現手機功能群 */
     @media (max-width: 768px) {
-      .nav-links { display: none !important;  }
-      .mobile-actions {  display: flex !important;  }
-      .menu-toggle {  display: block !important;  }
-    }
+  /* 0. 手機版隱藏電腦導航列，顯示手機功能群 */
+  .nav-links { display: none !important; }
+  .mobile-actions { display: flex !important; align-items: center !important; gap: 10px !important; }
+
+  /* 1. 導航容器對齊主頁尺寸與呼吸留白 */
+  .nav-in {
+    padding: 0 14px !important;
+    justify-content: space-between !important;
+  }
+  .logo-img {
+    height: 32px !important;
+    width: auto !important;
+  }
+
+  /* 2. 註冊按鈕大小與字級完全複製主頁 */
+  .btn-nav-reg {
+    padding: 7px 12px !important;
+    font-size: 0.8rem !important;
+    letter-spacing: 0.5px !important;
+  }
+
+  /* 3. 漢堡按鈕對齊主頁 */
+  .menu-toggle {
+    display: inline-flex !important;
+    padding: 6px 10px !important;
+    font-size: 0.82rem !important;
+  }
+
+  /* 4. 修正 Header 緊貼問題，給予舒適頂部間距 */
+  header {
+    padding: 24px 0 16px !important;
+  }
+}
 
     /* 🍔 漢堡按鈕呼吸光效 */
     .menu-toggle {
