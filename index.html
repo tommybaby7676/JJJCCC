@@ -610,10 +610,13 @@
         <a class="btn btn-nav-reg track-outbound" data-en="Register" data-zh="立即註冊" href="javascript:void(0);">Register</a>
       </div>
 
-      <!-- 手機端漢堡圖示 -->
-      <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
-        <span>MENU</span> <span>☰</span>
-      </button>
+      <!-- 手機端頂部功能區 (註冊按鈕 + 呼吸漢堡) -->
+      <div class="mobile-actions">
+        <a class="btn btn-nav-reg track-outbound" data-en="Register" data-zh="註冊" href="javascript:void(0);">Register</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+          <span>MENU</span> <span>☰</span>
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -1137,9 +1140,12 @@
 
     function toggleMenu() {
       if (!mobileMenu) return;
-      mobileMenu.classList.toggle('active');
+      const isOpen = mobileMenu.classList.toggle('active');
       if (menuToggle) {
-        menuToggle.textContent = mobileMenu.classList.contains('active') ? '✕' : '☰';
+        // 開啟時顯示 CLOSE ✕，關閉時還原為 MENU ☰，字眼永遠都在！
+        menuToggle.innerHTML = isOpen 
+          ? '<span>CLOSE</span> <span>✕</span>' 
+          : '<span>MENU</span> <span>☰</span>';
       }
     }
 
