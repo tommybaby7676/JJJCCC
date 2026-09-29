@@ -166,38 +166,38 @@
     .mobile-actions { display: none !important; }
     /* 手機版 (< 768px)：隱藏電腦版導航，顯現手機功能群 */
     @media (max-width: 768px) {
-  /* 0. 手機版隱藏電腦導航列，顯示手機功能群 */
-  .nav-links { display: none !important; }
-  .mobile-actions { display: flex !important; align-items: center !important; gap: 10px !important; }
+    /* 0. 手機版隱藏電腦導航列，顯示手機功能群 */
+    .nav-links { display: none !important; }
+    .mobile-actions { display: flex !important; align-items: center !important; gap: 10px !important; }
 
-  /* 1. 導航容器對齊主頁尺寸與呼吸留白 */
-  .nav-in {
-    padding: 0 14px !important;
-    justify-content: space-between !important;
-  }
-  .logo-img {
-    height: 32px !important;
-    width: auto !important;
-  }
+    /* 1. 導航容器對齊主頁尺寸與呼吸留白 */
+    .nav-in {
+      padding: 0 14px !important;
+      justify-content: space-between !important;
+    }
+    .logo-img {
+      height: 32px !important;
+      width: auto !important;
+    }
 
-  /* 2. 註冊按鈕大小與字級完全複製主頁 */
-  .btn-nav-reg {
-    padding: 7px 12px !important;
-    font-size: 0.8rem !important;
-    letter-spacing: 0.5px !important;
-  }
+    /* 2. 註冊按鈕大小與字級完全複製主頁 */
+    .btn-nav-reg {
+      padding: 7px 12px !important;
+      font-size: 0.8rem !important;
+      letter-spacing: 0.5px !important;
+    }
 
-  /* 3. 漢堡按鈕對齊主頁 */
-  .menu-toggle {
-    display: inline-flex !important;
-    padding: 6px 10px !important;
-    font-size: 0.82rem !important;
-  }
+    /* 3. 漢堡按鈕對齊主頁 */
+    .menu-toggle {
+      display: inline-flex !important;
+      padding: 6px 10px !important;
+      font-size: 0.82rem !important;
+    }
 
-  /* 4. 修正 Header 緊貼問題，給予舒適頂部間距 */
-  header {
-    padding: 24px 0 16px !important;
-  }
+    /* 4. 修正 Header 緊貼問題，給予舒適頂部間距 */
+    header {
+      padding: 24px 0 16px !important;
+    }
 }
 
     /* 🍔 漢堡按鈕呼吸光效 */
@@ -235,25 +235,22 @@
       .nav-links { display: none !important; }
       .mobile-actions { display: flex !important; align-items: center !important; gap: 10px !important; }
       .menu-toggle { display: inline-flex !important; }
-      
       /* 手機端第 4 張以後的卡片受折疊控制 */
-      .game-card.mobile-collapsed {
-        display: none !important;
+      .game-card.mobile-collapsed { display: none !important; }
+    }
+      /* 📱 手機抽屜菜單樣式 */
+      .mobile-menu {
+        display: none; position: fixed; top: var(--nav-height); left: 0; right: 0;
+        background: rgba(3, 28, 16, 0.98); border-bottom: 1px solid var(--line);
+        padding: 20px; z-index: 998; backdrop-filter: blur(20px);
+        flex-direction: column; gap: 16px;
       }
-    
-    /* 📱 手機抽屜菜單樣式 */
-    .mobile-menu {
-      display: none; position: fixed; top: var(--nav-height); left: 0; right: 0;
-      background: rgba(3, 28, 16, 0.98); border-bottom: 1px solid var(--line);
-      padding: 20px; z-index: 998; backdrop-filter: blur(20px);
-      flex-direction: column; gap: 16px;
-    }
-    .mobile-menu.active { display: flex; }
-    .mobile-menu a {
-      color: var(--text); text-decoration: none; font-size: 1.1rem;
-      font-weight: 700; font-family: "Chakra Petch"; padding: 8px 0;
-      border-bottom: 1px solid rgba(0, 255, 136, 0.1);
-    }
+      .mobile-menu.active { display: flex; }
+      .mobile-menu a {
+        color: var(--text); text-decoration: none; font-size: 1.1rem;
+        font-weight: 700; font-family: "Chakra Petch"; padding: 8px 0;
+        border-bottom: 1px solid rgba(0, 255, 136, 0.1);
+      }
     .mobile-menu a.active { color: var(--magenta); }
 
     /* 科技切角按鈕體系 */
