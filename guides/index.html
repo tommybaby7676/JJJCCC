@@ -426,20 +426,63 @@
     .reveal { opacity: 0; transform: translateY(18px); transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
     .reveal.in { opacity: 1; transform: none; }
 
-    /* 📱 手機端極致優化 (< 768px) */
+    /* 📱 手機端極致優化 (< 768px) - 完美鏡像首頁比例與折疊 */
     @media (max-width: 768px) {
+      /* 1. 隱藏電腦版導航，喚起手機按鈕組 */
       .nav-links { display: none !important; }
-      .mobile-actions { display: flex !important; }
-      .menu-toggle { display: block !important; }
-      .logo-img { height: var(--logo-height-mobile); }
+      .mobile-actions {
+        display: flex !important;
+        align-items: center !important;
+        gap: 10px !important;
+      }
+
+      /* 2. 頁首容器留白與 LOGO 高度對齊母版 */
+      .nav-in {
+        padding: 0 14px !important;
+        justify-content: space-between !important;
+      }
+      .logo-img {
+        height: 32px !important;
+        width: auto !important;
+      }
+
+      /* 3. 🎯 修正註冊按鈕過大問題：強制限縮內距與字級 */
+      .btn-nav-reg {
+        padding: 7px 12px !important;
+        font-size: 0.8rem !important;
+        letter-spacing: 0.5px !important;
+      }
+
+      /* 4. 🎯 漢堡按鈕對齊母版大小與水平置中 */
+      .menu-toggle {
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        padding: 6px 10px !important;
+        font-size: 0.82rem !important;
+      }
+
+      /* 5. 標題呼吸間距 */
       #cursor-glow { display: none; }
-      header { padding: 20px 0 14px; }
+      header {
+        padding: 24px 0 16px !important;
+      }
       h1 { font-size: 2.1rem; }
       .sub { font-size: 0.92rem; }
-      
+
+      /* 6. 分類膠囊與單欄文章排版 */
       .filter-tabs { gap: 6px; }
       .filter-btn { font-size: 0.8rem; padding: 6px 12px; }
-      .articles-grid { grid-template-columns: 1fr; gap: 16px; }
+      .articles-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+
+      /* 7. 🎯 核心折疊關鍵：第 4 篇之後的文章套上此 class 即完全隱藏 */
+      .article-card.mobile-collapsed {
+        display: none !important;
+      }
     }
 
     /* 💬 懸浮社群氣泡模組 (定稿旗艦版樣式) */
