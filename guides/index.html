@@ -172,11 +172,61 @@
       clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
       transition: 0.22s;
     }
+
     .btn-nav-reg {
       background: linear-gradient(120deg, var(--pink), var(--purple)) !important;
-      color: #ffffff !important; padding: 9px 20px !important; font-size: 0.85rem !important;
+      color: #ffffff !important;
+      padding: 9px 20px;
+      font-size: 0.85rem;
       box-shadow: 0 0 14px rgba(0, 255, 136, 0.4) !important;
     }
+
+    /* 👻 幽靈按鈕樣式 (查看更多攻略專用) */
+    .btn-ghost {
+      background: rgba(4, 40, 24, 0.9) !important;
+      color: #FFFFFF !important;
+      border: 1.5px solid var(--magenta) !important;
+      box-shadow: 0 0 14px rgba(0, 255, 136, 0.25) !important;
+      backdrop-filter: blur(8px);
+      transition: all 0.22s ease;
+    }
+    .btn-ghost:hover {
+      background: rgba(0, 255, 136, 0.18) !important;
+      color: var(--magenta) !important;
+      box-shadow: 0 0 22px rgba(0, 255, 136, 0.5) !important;
+      transform: translateY(-2px);
+    }
+
+    /* 🍔 漢堡按鈕呼吸光效 */
+    .menu-toggle {
+      display: none; background: rgba(0, 255, 136, 0.08); border: 1.5px solid var(--magenta);
+      color: var(--magenta); font-family: "Chakra Petch"; font-weight: 700;
+      font-size: 0.85rem; padding: 5px 10px; cursor: pointer; border-radius: 4px;
+      line-height: 1; align-items: center; gap: 6px;
+      box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+      animation: menuBlink 2.5s infinite;
+    }
+    @keyframes menuBlink {
+      0%, 100% { box-shadow: 0 0 8px rgba(0, 255, 136, 0.25); border-color: rgba(0, 255, 136, 0.4); }
+      50% { box-shadow: 0 0 18px rgba(0, 255, 136, 0.7); border-color: var(--magenta); }
+    }
+
+    /* 電腦端預設隱藏手機專用按鈕群 */
+    .mobile-actions { display: none; }
+
+    /* 🚀 回到頂部火箭按鈕樣式 */
+    .back-to-top {
+      position: fixed; bottom: 92px; right: 23px; width: 48px; height: 48px;
+      border-radius: 50%; background: var(--panel-solid); border: 1.5px solid var(--line);
+      color: var(--magenta); cursor: pointer !important; display: flex; align-items: center;
+      justify-content: center; z-index: 99999 !important; opacity: 0; pointer-events: none;
+      transform: translateY(16px); transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+    }
+    .back-to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .back-to-top:hover { border-color: var(--magenta); background: #00ff88; color: #031c10; box-shadow: 0 0 20px rgba(0,255,136,0.8); }
+    .back-to-top svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2.5; pointer-events: none; }
+
     .btn-primary {
       background: linear-gradient(120deg, var(--pink), var(--purple));
       color: #ffffff !important; font-weight: 900;
@@ -455,15 +505,16 @@
         <a data-en="Guides" data-zh="機台攻略" class="active" href="./">Guides</a>
         <a data-en="FAQ" data-zh="常見問題" href="../faq/">FAQ</a>
         <a data-en="About" data-zh="關於我們" href="../about/">About</a>
-        <button class="lang" id="langBtn">EN</button>
+        <button class="lang" id="langBtn">中文</button>
         <a class="btn btn-nav-reg track-outbound" data-en="Register" data-zh="立即註冊" href="javascript:void(0);">Register</a>
       </div>
 
-      <!-- 手機端功能按鈕群 (語言 + 立即註冊 + 漢堡) -->
-      <div class="mobile-actions" style="display:flex; align-items:center; gap:8px;">
-        <button class="lang" id="langBtnTop" style="padding:4px 8px; font-size:0.75rem;">EN</button>
-        <a class="btn btn-nav-reg track-outbound" data-en="Register" data-zh="註冊" href="javascript:void(0);" style="padding:6px 10px !important; font-size:0.78rem !important;">Register</a>
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">☰</button>
+      <!-- 手機端功能按鈕群 (間距 10px，純註冊 + 帶字呼吸漢堡) -->
+      <div class="mobile-actions">
+        <a class="btn btn-nav-reg track-outbound" data-en="Register" data-zh="註冊" href="javascript:void(0);">Register</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+          <span>MENU</span> <span>☰</span>
+        </button>
       </div>
     </div>
   </nav>
@@ -478,7 +529,7 @@
     <a data-en="About" data-zh="關於我們" href="../about/">About</a>
     <div style="display:flex; justify-content:space-between; align-items:center; padding-top:10px;">
       <span style="font-family:'Chakra Petch'; font-size:0.9rem; color:var(--muted);">Language:</span>
-      <button class="lang" id="langBtnDrawer">EN</button>
+      <button class="lang" id="langBtnDrawer">中文</button>
     </div>
     <a class="btn btn-primary track-outbound" style="width:100%; margin-top:8px;" data-en="REGISTER NOW ›" data-zh="立即註冊領彩金 ›" href="javascript:void(0);">REGISTER NOW ›</a>
   </div>
@@ -676,6 +727,14 @@
         </article>
 
       </div>
+
+      <!-- 📱 手機端超過 3 篇攻略自動觸發「查看更多」按鈕 (電腦端自動隱藏) -->
+      <div style="text-align:center; margin: -20px auto 40px;" class="reveal">
+        <button class="btn btn-ghost" id="moreGuidesBtn" onclick="toggleMoreGuides()" style="display:none; padding:12px 30px; font-size:0.95rem; width:100%; max-width:320px;">
+          <span data-en="VIEW MORE GUIDES ▾" data-zh="查看更多機台攻略 ▾">VIEW MORE GUIDES ▾</span>
+        </button>
+      </div>
+      
     </section>
 
     <!-- 頁尾轉換大卡片 -->
@@ -692,6 +751,12 @@
       </a>
     </div>
   </main>
+
+  <!-- 🚀 回到頂端火箭按鈕 (最高層級穿透 + 行內直通) -->
+  <button class="back-to-top" id="backToTopBtn" aria-label="Back to Top" title="Back to Top"
+          onclick="window.scrollTo({top: 0, behavior: 'smooth'}); document.documentElement.scrollTop=0; document.body.scrollTop=0;">
+    <svg viewBox="0 0 24 24"><path d="M18 15 L12 9 L6 15"/><path d="M12 9 L12 21"/></svg>
+  </button>
 
   <!-- 官方正式頁尾 -->
   <footer>
@@ -759,7 +824,44 @@
 
   <!-- 【區塊 16】核心動態引擎 -->
   <script>
-    // 1. 文章分類即時篩選器
+    // 1. 📱 手機端超過 3 篇自動折疊與展開運算
+    let isGuidesExpanded = false;
+
+    function updateMobileGuidesCollapse() {
+      const isMobile = window.innerWidth <= 768;
+      const visibleCards = Array.from(document.querySelectorAll('.article-card')).filter(c => c.style.display !== 'none');
+      const btn = document.getElementById('moreGuidesBtn');
+
+      if (!isMobile || visibleCards.length <= 3) {
+        if (btn) btn.style.display = 'none';
+        visibleCards.forEach(c => c.classList.remove('mobile-collapsed'));
+        return;
+      }
+
+      if (btn) btn.style.display = 'inline-flex';
+
+      if (!isGuidesExpanded) {
+        visibleCards.forEach((card, index) => {
+          if (index >= 3) card.classList.add('mobile-collapsed');
+          else card.classList.remove('mobile-collapsed');
+        });
+        if (btn) {
+          btn.innerHTML = (currentLang === 'en') ? '<span>VIEW MORE GUIDES ▾</span>' : '<span>查看更多機台攻略 ▾</span>';
+        }
+      } else {
+        visibleCards.forEach(card => card.classList.remove('mobile-collapsed'));
+        if (btn) {
+          btn.innerHTML = (currentLang === 'en') ? '<span>COLLAPSE GUIDES ▴</span>' : '<span>收合攻略列表 ▴</span>';
+        }
+      }
+    }
+
+    function toggleMoreGuides() {
+      isGuidesExpanded = !isGuidesExpanded;
+      updateMobileGuidesCollapse();
+    }
+
+    // 2. 🏷️ 文章分類即時篩選器 (聯動折疊)
     function filterArticles(category, btn) {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
@@ -772,25 +874,41 @@
           card.style.display = 'none';
         }
       });
+
+      isGuidesExpanded = false;
+      updateMobileGuidesCollapse();
     }
 
-    // 2. 手機版抽屜選單控制
+    // 3. 📱 手機版抽屜選單控制 (防止 MENU 文字被沖掉)
     const menuToggle = document.getElementById('menuToggle');
     const mobileMenu = document.getElementById('mobileMenu');
 
     function toggleMenu() {
       if (!mobileMenu) return;
-      mobileMenu.classList.toggle('active');
+      const isOpen = mobileMenu.classList.toggle('active');
       if (menuToggle) {
-        menuToggle.textContent = mobileMenu.classList.contains('active') ? '✕' : '☰';
+        menuToggle.innerHTML = isOpen 
+          ? '<span>CLOSE</span> <span>✕</span>' 
+          : '<span>MENU</span> <span>☰</span>';
       }
     }
-    if (menuToggle) {
-      menuToggle.addEventListener('click', toggleMenu);
+    if (menuToggle) menuToggle.addEventListener('click', toggleMenu);
+
+    // 4. 🚀 回到頂端火箭按鈕監聽 (滾動 350px 浮現)
+    const backToTopBtn = document.getElementById('backToTopBtn');
+    if (backToTopBtn) {
+      window.addEventListener('scroll', function() {
+        const scrollPos = window.pageYOffset || document.documentElement.scrollTop || 0;
+        if (scrollPos > 350) backToTopBtn.classList.add('show');
+        else backToTopBtn.classList.remove('show');
+      });
     }
 
-    // 3. ✨ 雙語即時切換引擎 (自帶載入初始化)
+    // 5. ✨ 雙語即時切換引擎 (初始化對齊：當前英文時按鈕顯示「中文」)
+    let currentLang = 'en';
+
     function applyLanguage(targetLang) {
+      currentLang = targetLang;
       const label = (targetLang === 'en') ? '中文' : 'EN';
       
       const pcBtn = document.getElementById('langBtn');
@@ -805,6 +923,7 @@
         if (text !== null) el.innerHTML = text;
       });
       document.documentElement.lang = (targetLang === 'en') ? 'en-AU' : 'zh';
+      updateMobileGuidesCollapse();
     }
 
     function switchLanguage() {
@@ -819,12 +938,7 @@
     if (drawerLangBtn) drawerLangBtn.addEventListener('click', switchLanguage);
     if (topLangBtn) topLangBtn.addEventListener('click', switchLanguage);
 
-    (function initLanguage() {
-      const defaultLang = document.documentElement.lang.startsWith('zh') ? 'zh' : 'en';
-      applyLanguage(defaultLang);
-    })();
-
-    // 4. 🎯 動態跳轉引擎 (廣告參數無損繼承)
+    // 6. 🎯 動態跳轉引擎 (廣告參數無損繼承)
     function getFinalTargetUrl(customUrl) {
       const defaultRegisterUrl = "https://www.mate369.com/Register?p=JC";
       const targetBase = (customUrl && customUrl.trim() !== "") ? customUrl.trim() : defaultRegisterUrl;
@@ -845,11 +959,8 @@
       const target = e.target.closest('.track-outbound');
       if (!target) return;
       
-      // 若該連結是前往其他文章 HTML 頁面，放行正常跳轉
       const targetHref = target.getAttribute('href');
-      if (targetHref && targetHref.endsWith('.html')) {
-        return;
-      }
+      if (targetHref && targetHref.endsWith('.html')) return;
 
       e.preventDefault();
       if (window.fbq) {
@@ -862,7 +973,7 @@
       setTimeout(function() { window.location.href = destination; }, 150);
     });
 
-    // 5. ✨ 滑鼠跟隨光斑
+    // 7. ✨ 滑鼠跟隨光斑
     (function() {
       const glow = document.getElementById('cursor-glow');
       if (window.matchMedia('(hover: none)').matches || !glow) return;
@@ -872,7 +983,7 @@
       });
     })();
 
-    // 6. 滾動淡入
+    // 8. 滾動淡入
     (function() {
       if (!('IntersectionObserver' in window)) return;
       const io = new IntersectionObserver(function(entries) {
@@ -889,7 +1000,7 @@
       });
     })();
 
-    // 7. 💬 懸浮社群氣泡點擊開關與全域點擊收合控制
+    // 9. 💬 懸浮社群氣泡點擊開關與全域點擊收合控制
     (function() {
       const wrap = document.getElementById('socialBubbleWrap');
       const mainBtn = document.getElementById('socialMainBtn');
@@ -905,6 +1016,13 @@
           wrap.classList.remove('active');
         }
       });
+    })();
+
+    // 10. 頁面載入自初始化
+    (function initPage() {
+      const defaultLang = document.documentElement.lang.startsWith('zh') ? 'zh' : 'en';
+      applyLanguage(defaultLang);
+      window.addEventListener('resize', updateMobileGuidesCollapse);
     })();
   </script>
 </body>
